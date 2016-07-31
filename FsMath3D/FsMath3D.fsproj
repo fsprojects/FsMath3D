@@ -8,6 +8,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FsMath3D</RootNamespace>
     <AssemblyName>FsMath3D</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,22 +22,6 @@
     <ErrorReport>prompt</ErrorReport>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="FsMath3D.Vector.fs" />
-    <Compile Include="FsMath3D.Matrix.fs" />
-    <Compile Include="FsMath3D.Quaternion.fs" />
-    <Compile Include="FsMath3D.Transform.fs" />
-    <Compile Include="FsMath3D.Geometry.fs" />
-    <Compile Include="FsMath3D.Queries.fs" />
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '11.0'">
       <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">
@@ -49,4 +35,23 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="FsMath3D.Vector.fs" />
+    <Compile Include="FsMath3D.Matrix.fs" />
+    <Compile Include="FsMath3D.Quaternion.fs" />
+    <Compile Include="FsMath3D.Transform.fs" />
+    <Compile Include="FsMath3D.Geometry.fs" />
+    <Compile Include="FsMath3D.Queries.fs" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
 </Project>

@@ -5,3 +5,7 @@
 /.vs/FsMath3D/v14/.suo
 /FsMath3D/bin
 /FsMath3D/obj
+/nuget
+/FsMath3D.dll
+/Package.1.5.0.nuspec
+/Package.nuspec
