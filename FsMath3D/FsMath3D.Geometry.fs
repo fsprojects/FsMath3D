@@ -1,5 +1,5 @@
 ﻿(*
-** F# Rendering ToolKit
+** F# 3D Math
 ** Copyright (C) 2015  Wael El Oraiby
 ** 
 ** This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,14 @@
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *)
 
-module FsRTK.Math3D.Geometry
+module FsMath3D.Geometry
 
 open System
 open System.Runtime
 open System.Runtime.InteropServices
 
-open FsRTK
-open FsRTK.Math3D.Vector
-open FsRTK.Math3D.Matrix
+open FsMath3D.Vector
+open FsMath3D.Matrix
 
 type size2 = struct
     val         width   : single

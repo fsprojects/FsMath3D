@@ -1,5 +1,5 @@
 ﻿(*
-** F# Rendering ToolKit
+** F# 3D Math.
 ** Copyright (C) 2015  Wael El Oraiby
 ** 
 ** This program is free software: you can redistribute it and/or modify
@@ -15,11 +15,11 @@
 ** You should have received a copy of the GNU Affero General Public License
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *)
-module FsRTK.Math3D.Quaternion
+module FsMath3D.Quaternion
 
 open System
-open FsRTK.Math3D.Vector
-open FsRTK.Math3D.Matrix
+open FsMath3D.Vector
+open FsMath3D.Matrix
 
 type quat = struct
     val x   : single

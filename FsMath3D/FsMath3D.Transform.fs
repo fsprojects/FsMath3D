@@ -1,5 +1,5 @@
 ﻿(*
-** F# Rendering ToolKit
+** F# 3D Math
 ** Copyright (C) 2015  Wael El Oraiby
 ** 
 ** This program is free software: you can redistribute it and/or modify
@@ -16,11 +16,11 @@
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *)
 
-module FsRTK.Math3D.Transform
+module FsMath3D.Transform
 
-open FsRTK.Math3D.Vector
-open FsRTK.Math3D.Matrix
-open FsRTK.Math3D.Quaternion
+open FsMath3D.Vector
+open FsMath3D.Matrix
+open FsMath3D.Quaternion
 
 ////////////////////////////////////////////////////////////////////////////////
 /// orthogonal 2d projection matrix (both tested)
