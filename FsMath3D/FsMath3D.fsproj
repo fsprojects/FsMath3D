@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -32,8 +31,10 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="FsMath3D.Vector.fs" />
     <Compile Include="FsMath3D.Matrix.fs" />
+    <Compile Include="FsMath3D.Quaternion.fs" />
     <Compile Include="FsMath3D.Transform.fs" />
     <Compile Include="FsMath3D.Geometry.fs" />
+    <Compile Include="FsMath3D.Queries.fs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '11.0'">

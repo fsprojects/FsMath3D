@@ -1,5 +1,5 @@
 ﻿(*
-** Math3D for F#
+** F# Rendering ToolKit
 ** Copyright (C) 2015  Wael El Oraiby
 ** 
 ** This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,13 @@
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *)
 
-module FsMath3D.Matrix
+module FsRTK.Math3D.Matrix
 
 open System
 open System.Runtime
 open System.Runtime.InteropServices
 
-open FsMath3D.Vector
-
-#nowarn "9"
+open FsRTK.Math3D.Vector
 
 (*
 ** matX structure
@@ -34,8 +32,7 @@ open FsMath3D.Vector
 **        | .. ..   ... |   | ...      ...      ... |
 *)
 
-[<StructAttribute; StructLayoutAttribute(LayoutKind.Sequential)>]
-type mat2 =
+type mat2 = struct
     val         c0  : vec2
     val         c1  : vec2
 
@@ -53,22 +50,22 @@ type mat2 =
     member x.r0   = vec2(x.c0.x, x.c1.x)
     member x.r1   = vec2(x.c0.y, x.c1.y)
 
-    static member identity = mat2(1.0f, 0.0f, 0.0f, 1.0f)
+    static member inline identity = mat2(1.0f, 0.0f, 0.0f, 1.0f)
 
-    static member transpose (m: mat2)   =
+    static member inline transpose (m: mat2)   =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m01 = m.c1.x
         let m11 = m.c1.y
         mat2(m00, m01, m10, m11)
 
-    static member (+) (a: mat2, b: mat2)      = mat2(a.c0 + b.c0, a.c1 + b.c1)
-    static member (-) (a: mat2, b: mat2)      = mat2(a.c0 - b.c0, a.c1 - b.c1)
+    static member inline (+) (a: mat2, b: mat2)      = mat2(a.c0 + b.c0, a.c1 + b.c1)
+    static member inline (-) (a: mat2, b: mat2)      = mat2(a.c0 - b.c0, a.c1 - b.c1)
 
-    static member (*) (a: mat2, b: single)    = mat2(a.c0 * b, a.c1 * b)
-    static member (/) (a: mat2, b: single)    = mat2(a.c0 / b, a.c1 / b)
+    static member inline (*) (a: mat2, b: single)    = mat2(a.c0 * b, a.c1 * b)
+    static member inline (/) (a: mat2, b: single)    = mat2(a.c0 / b, a.c1 / b)
 
-    static member (*) (a: mat2, b: mat2)      =
+    static member inline (*) (a: mat2, b: mat2)      =
         let a00 = a.c0.x
         let a10 = a.c0.y
         let a01 = a.c1.x
@@ -86,7 +83,7 @@ type mat2 =
 
         mat2(c00, c10, c01, c11)
 
-    static member determinant (m: mat2) =
+    static member inline determinant (m: mat2) =
         let m00 = m.c0.x
         let m10 = m.c0.y
  
@@ -95,7 +92,7 @@ type mat2 =
 
         m00 * m11 - m01 * m10
 
-    static member inverse (m: mat2) =
+    static member inline inverse (m: mat2) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m01 = m.c1.x
@@ -110,13 +107,14 @@ type mat2 =
 
         mat2(r00, r10, r01, r11)
 
-    static member (/) (a: mat2, b: mat2)    = a * (mat2.inverse b)
+    static member inline (/) (a: mat2, b: mat2)    = a * (mat2.inverse b)
 
-    static member (*) (v: vec2, m: mat2)    = vec2(vec2.dot(m.c0, v), vec2.dot(m.c1, v))
-    static member (*) (m: mat2, v: vec2)    = vec2(vec2.dot(m.r0, v), vec2.dot(m.r1, v))
+    static member inline (*) (v: vec2, m: mat2)    = vec2(vec2.dot(m.c0, v), vec2.dot(m.c1, v))
+    static member inline (*) (m: mat2, v: vec2)    = vec2(vec2.dot(m.r0, v), vec2.dot(m.r1, v))
     
-[<StructAttribute; StructLayoutAttribute(LayoutKind.Sequential)>]
-type mat3 =
+    end
+
+type mat3 = struct
     val         c0  : vec3
     val         c1  : vec3
     val         c2  : vec3
@@ -140,11 +138,11 @@ type mat3 =
     member x.r1   = vec3(x.c0.y, x.c1.y, x.c2.y)
     member x.r2   = vec3(x.c0.z, x.c1.z, x.c2.z)
 
-    static member identity = mat3(1.0f, 0.0f, 0.0f,
-                                  0.0f, 1.0f, 0.0f,
-                                  0.0f, 0.0f, 1.0f)
+    static member inline identity = mat3(1.0f, 0.0f, 0.0f,
+                                         0.0f, 1.0f, 0.0f,
+                                         0.0f, 0.0f, 1.0f)
 
-    static member transpose (m: mat3) =
+    static member inline transpose (m: mat3) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m20 = m.c0.z
@@ -161,13 +159,13 @@ type mat3 =
              m10, m11, m12,
              m20, m21, m22)
 
-    static member (+) (a: mat3, b: mat3)      = mat3(a.c0 + b.c0, a.c1 + b.c1, a.c2 + b.c2)
-    static member (-) (a: mat3, b: mat3)      = mat3(a.c0 - b.c0, a.c1 - b.c1, a.c2 - b.c2)
+    static member inline (+) (a: mat3, b: mat3)      = mat3(a.c0 + b.c0, a.c1 + b.c1, a.c2 + b.c2)
+    static member inline (-) (a: mat3, b: mat3)      = mat3(a.c0 - b.c0, a.c1 - b.c1, a.c2 - b.c2)
 
-    static member (*) (a: mat3, b: single)    = mat3(a.c0 * b, a.c1 * b, a.c2 * b)
-    static member (/) (a: mat3, b: single)    = mat3(a.c0 / b, a.c1 / b, a.c2 / b)
+    static member inline (*) (a: mat3, b: single)    = mat3(a.c0 * b, a.c1 * b, a.c2 * b)
+    static member inline (/) (a: mat3, b: single)    = mat3(a.c0 / b, a.c1 / b, a.c2 / b)
 
-    static member (*) (a: mat3, b: mat3)      =
+    static member inline (*) (a: mat3, b: mat3)      =
         let a00 = a.c0.x
         let a10 = a.c0.y
         let a20 = a.c0.z
@@ -208,7 +206,7 @@ type mat3 =
              c01, c11, c21,
              c02, c12, c22)
 
-    static member determinant (m: mat3) =
+    static member inline determinant (m: mat3) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m20 = m.c0.z
@@ -228,7 +226,7 @@ type mat3 =
         m01 * m10 * m22 -
         m02 * m11 * m20
 
-    static member inverse (m: mat3) =
+    static member inline inverse (m: mat3) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m20 = m.c0.z
@@ -260,13 +258,14 @@ type mat3 =
 
         mat3(r00, r10, r20, r01, r11, r21, r02, r12, r22)
             
-    static member (/) (a: mat3, b: mat3)    = a * (mat3.inverse b)
+    static member inline (/) (a: mat3, b: mat3)    = a * (mat3.inverse b)
 
-    static member (*) (v: vec3, m: mat3)    = vec3(vec3.dot(m.c0, v), vec3.dot(m.c1, v), vec3.dot(m.c2, v))
-    static member (*) (m: mat3, v: vec3)    = vec3(vec3.dot(m.r0, v), vec3.dot(m.r1, v), vec3.dot(m.r2, v))
+    static member inline (*) (v: vec3, m: mat3)    = vec3(vec3.dot(m.c0, v), vec3.dot(m.c1, v), vec3.dot(m.c2, v))
+    static member inline (*) (m: mat3, v: vec3)    = vec3(vec3.dot(m.r0, v), vec3.dot(m.r1, v), vec3.dot(m.r2, v))
 
-[<StructAttribute; StructLayoutAttribute(LayoutKind.Sequential)>]
-type mat4 =
+    end
+
+type mat4 = struct
     val         c0  : vec4
     val         c1  : vec4
     val         c2  : vec4
@@ -281,7 +280,18 @@ type mat4 =
                                 c1 = vec4(m4,  m5,  m6,  m7)
                                 c2 = vec4(m8,  m9,  m10, m11)
                                 c3 = vec4(m12, m13, m14, m15) }
-                                
+            
+    member x.toArray() =
+        let c0 = x.c0.toArray()
+        let c1 = x.c1.toArray()
+        let c2 = x.c2.toArray()
+        let c3 = x.c3.toArray()
+
+        [| yield! c0
+           yield! c1
+           yield! c2
+           yield! c3 |] 
+                              
     member x.Item i =
         match i with
         | 0 -> x.c0
@@ -295,12 +305,12 @@ type mat4 =
     member x.r2   = vec4(x.c0.z, x.c1.z, x.c2.z, x.c3.z)
     member x.r3   = vec4(x.c0.w, x.c1.w, x.c2.w, x.c3.w)
 
-    static member identity = mat4(1.0f, 0.0f, 0.0f, 0.0f,
-                                  0.0f, 1.0f, 0.0f, 0.0f,
-                                  0.0f, 0.0f, 1.0f, 0.0f,
-                                  0.0f, 0.0f, 0.0f, 1.0f)
+    static member inline identity = mat4(1.0f, 0.0f, 0.0f, 0.0f,
+                                         0.0f, 1.0f, 0.0f, 0.0f,
+                                         0.0f, 0.0f, 1.0f, 0.0f,
+                                         0.0f, 0.0f, 0.0f, 1.0f)
 
-    static member transpose (m: mat4) =
+    static member inline transpose (m: mat4) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m20 = m.c0.z
@@ -326,13 +336,13 @@ type mat4 =
              m20, m21, m22, m23,
              m30, m31, m32, m33)
 
-    static member (+) (a: mat4, b: mat4)      = mat4(a.c0 + b.c0, a.c1 + b.c1, a.c2 + b.c2, a.c3 + b.c3)
-    static member (-) (a: mat4, b: mat4)      = mat4(a.c0 - b.c0, a.c1 - b.c1, a.c2 - b.c2, a.c3 - b.c3)
+    static member inline (+) (a: mat4, b: mat4)      = mat4(a.c0 + b.c0, a.c1 + b.c1, a.c2 + b.c2, a.c3 + b.c3)
+    static member inline (-) (a: mat4, b: mat4)      = mat4(a.c0 - b.c0, a.c1 - b.c1, a.c2 - b.c2, a.c3 - b.c3)
 
-    static member (*) (a: mat4, b: single)    = mat4(a.c0 * b, a.c1 * b, a.c2 * b, a.c3 * b)
-    static member (/) (a: mat4, b: single)    = mat4(a.c0 / b, a.c1 / b, a.c2 / b, a.c3 / b)
+    static member inline (*) (a: mat4, b: single)    = mat4(a.c0 * b, a.c1 * b, a.c2 * b, a.c3 * b)
+    static member inline (/) (a: mat4, b: single)    = mat4(a.c0 / b, a.c1 / b, a.c2 / b, a.c3 / b)
 
-    static member (*) (a: mat4, b: mat4) =
+    static member inline (*) (a: mat4, b: mat4) =
         let a00 = a.c0.x
         let a10 = a.c0.y
         let a20 = a.c0.z
@@ -398,7 +408,7 @@ type mat4 =
              c02, c12, c22, c32,
              c03, c13, c23, c33)
 
-    static member determinant (m: mat4) =
+    static member inline determinant (m: mat4) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m20 = m.c0.z
@@ -432,7 +442,7 @@ type mat4 =
         m02 * m10 * m21 * m33 - m00 * m12 * m21 * m33 -
         m01 * m10 * m22 * m33 + m00 * m11 * m22 * m33
         
-    static member inverse (m: mat4) =
+    static member inline inverse (m: mat4) =
         let m00 = m.c0.x
         let m10 = m.c0.y
         let m20 = m.c0.z
@@ -537,7 +547,9 @@ type mat4 =
              r02, r12, r22, r32,
              r03, r13, r23, r33)
 
-    static member (/) (a: mat4, b: mat4)    = a * (mat4.inverse b)
+    static member inline (/) (a: mat4, b: mat4)    = a * (mat4.inverse b)
 
-    static member (*) (v: vec4, m: mat4)    = vec4(vec4.dot(m.c0, v), vec4.dot(m.c1, v), vec4.dot(m.c2, v), vec4.dot(m.c3, v))
-    static member (*) (m: mat4, v: vec4)    = vec4(vec4.dot(m.r0, v), vec4.dot(m.r1, v), vec4.dot(m.r2, v), vec4.dot(m.r3, v))
+    static member inline (*) (v: vec4, m: mat4)    = vec4(vec4.dot(m.c0, v), vec4.dot(m.c1, v), vec4.dot(m.c2, v), vec4.dot(m.c3, v))
+    static member inline (*) (m: mat4, v: vec4)    = vec4(vec4.dot(m.r0, v), vec4.dot(m.r1, v), vec4.dot(m.r2, v), vec4.dot(m.r3, v))
+
+    end
