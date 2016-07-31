@@ -23,4 +23,4 @@ described in the [GCC Runtime Library Exception](https://www.gnu.org/licenses/gc
 published by the Free Software Foundation.
 
 Roughly speaking: it means that you can statically link with the code but you are obliged
-to make open your bug fixes and/or enhancement to the arabtype.c/arabtype.h code.
+to make open your bug fixes and/or enhancement to the code.
