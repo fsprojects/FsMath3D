@@ -22,5 +22,5 @@ Under Section 7 of GPL version 3, you are granted additional permissions
 described in the [GCC Runtime Library Exception](https://www.gnu.org/licenses/gcc-exception-3.1.en.html), version 3.1, as
 published by the Free Software Foundation.
 
-Roughly speaking: it means that you can statically link with the code but you are obliged
-to make open your bug fixes and/or enhancement to the code.
+<b>Roughly speaking: You can statically link with the code but you are obliged
+to make open your bug fixes and/or enhancement to the code.</b>
