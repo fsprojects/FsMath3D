@@ -229,7 +229,7 @@ type tri3 = struct
         let lc = vec3.length c
 
         let p = (la + lb + lc) * 0.5f
-        Math.Sqrt ((p * (p - la) * (p - lb) * (p - lc)) |> float) |> single
+        (p * (p - la) * (p - lb) * (p - lc)) |> sqrt
 
     static member barCoordsToSysCoords (p: vec3) (t: tri3) =
         let a = t.v1 - t.v0

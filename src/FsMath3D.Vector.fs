@@ -53,7 +53,7 @@ type vec2 = struct
     static member inline (~-) (a: vec2)            = vec2(-a.x, -a.y)
 
     static member inline dot (a: vec2, b: vec2)        =  a.x * b.x + a.y * b.y
-    static member inline length (v: vec2)              = Math.Sqrt(vec2.dot(v, v) |> float) |> single
+    static member inline length (v: vec2)              = vec2.dot(v, v) |> sqrt
     static member inline distance (v0: vec2, v1: vec2) = let s = v1 - v0 in vec2.length s
     static member inline normalize (v: vec2)           = let l = vec2.length v in v / l
 
@@ -98,7 +98,7 @@ type vec3 = struct
     static member inline (~-) (a: vec3)            = vec3(-a.x, -a.y, -a.z)
 
     static member inline dot (a: vec3, b: vec3)        =  a.x * b.x + a.y * b.y + a.z * b.z
-    static member inline length (v: vec3)              = Math.Sqrt(vec3.dot(v, v) |> float) |> single
+    static member inline length (v: vec3)              = vec3.dot(v, v) |> sqrt
     static member inline distance (v0: vec3, v1: vec3) = let s = v1 - v0 in vec3.length s
     static member inline normalize (v: vec3)           = let l = vec3.length v in v / l
 
@@ -143,7 +143,7 @@ type vec4 = struct
     static member inline (~-) (a: vec4)            = vec4(-a.x, -a.y, -a.z, -a.w)
 
     static member inline dot (a: vec4, b: vec4)        =  a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-    static member inline length (v: vec4)              = Math.Sqrt(vec4.dot(v, v) |> float) |> single
+    static member inline length (v: vec4)              = vec4.dot(v, v) |> sqrt
     static member inline distance (v0: vec4, v1: vec4) = let s = v1 - v0 in vec4.length s
     static member inline normalize (v: vec4)           = let l = vec4.length v in v / l
 
@@ -178,7 +178,7 @@ type ivec2 = struct
     static member inline (~-) (a: ivec2)            = ivec2(-a.x, -a.y)
 
     static member inline dot (a: ivec2, b: ivec2)        =  a.x * b.x + a.y * b.y
-    static member inline length (v: ivec2)               = Math.Sqrt(ivec2.dot(v, v) |> float) |> int
+    static member inline length (v: ivec2)               = ivec2.dot(v, v) |> single |> sqrt |> int
     static member inline distance (v0: ivec2, v1: ivec2) = let s = v1 - v0 in ivec2.length s
     static member inline normalize (v: ivec2)            = let l = ivec2.length v in v / l
 
@@ -220,7 +220,7 @@ type ivec3 = struct
     static member inline (~-) (a: ivec3)            = ivec3(-a.x, -a.y, -a.z)
 
     static member inline dot (a: ivec3, b: ivec3)           =  a.x * b.x + a.y * b.y + a.z * b.z
-    static member inline length (v: ivec3)                  = Math.Sqrt(ivec3.dot(v, v) |> float) |> int
+    static member inline length (v: ivec3)                  = ivec3.dot(v, v) |> single |> sqrt |> int
     static member inline distance (v0: ivec3, v1: ivec3)    = let s = v1 - v0 in ivec3.length s
     static member inline normalize (v: ivec3)               = let l = ivec3.length v in v / l
 
@@ -260,7 +260,7 @@ type ivec4 = struct
     static member inline (~-) (a: ivec4)            = ivec4(-a.x, -a.y, -a.z, -a.w)
 
     static member inline dot (a: ivec4, b: ivec4)        =  a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
-    static member inline length (v: ivec4)               = Math.Sqrt(ivec4.dot(v, v) |> float) |> int
+    static member inline length (v: ivec4)               = ivec4.dot(v, v) |> single |> sqrt |> int
     static member inline distance (v0: ivec4, v1: ivec4) = let s = v1 - v0 in ivec4.length s
     static member inline normalize (v: ivec4)            = let l = ivec4.length v in v / l   
 

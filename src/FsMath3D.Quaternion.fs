@@ -46,7 +46,7 @@ type quat = struct
     static member (/) (q0: single, q1: quat) = quat(q0 / q1.x, q0 / q1.y, q0 / q1.z, q0 / q1.w)
 
     static member dot (q0: quat, q1: quat) = q0.x * q1.x + q0.y * q1.y + q0.z * q1.z + q0.w * q1.w
-    static member length (q: quat)  = Math.Sqrt ((q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w) |> float) |> single
+    static member length (q: quat)  = sqrt (q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w)
     static member conjugate (q: quat) = quat(-q.x, -q.y, -q.z, q.w)
     static member normalize (q: quat) = if quat.length q > 0.0f then q / quat.length(q) else q
     static member inverse (q: quat)   = quat.normalize <| quat.conjugate q
