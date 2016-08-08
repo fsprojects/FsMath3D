@@ -15,6 +15,24 @@ The Matrices are written in Column major order (GLSL default). This means that t
 
 has the following layout in memory: `[m0 m1 m2 m3 m4 m5 m6 m7 m8]`
 
+### Modules
+
+#### [Vector](./docs/Vector.md)
+<b>`vec2, vec3, vec4`</b>: 2D, 3D and 4D single precision floating point vectors (32 bits per component)
+
+<b>`ivec2, ivec3, ivec4`</b>: 2D, 3D and 4D signed integer vectors  (32 bits per component)
+
+<b>`color4`</b>: rgba color with single precision floating point components
+
+#### Matrix
+
+#### Quaternion
+
+#### Transform
+
+#### Geometry
+
+#### Queries
 
 ### LICENSE
 
