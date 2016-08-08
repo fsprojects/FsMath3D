@@ -1,5 +1,20 @@
 # FsMath3D
-3D Math Library for F#
+F# 3D Math Library for realtime applications
+
+### Purpose
+An F# 3D math library that can be used to make 3D games and applications. <b>FsMath3D</b> uses [OpenGL GLSL](https://www.khronos.org/files/opengles_shading_language.pdf) semantics and conventions, so it's easier to interface with OpenGL and OpenGL ES.
+
+### Convention
+The Matrices are written in Column major order (GLSL default). This means that the matrix: 
+
+```math
+| m0 m3 m6 |
+| m1 m4 m7 |
+| m2 m5 m8 |
+```
+
+has the following layout in memory: `[m0 m1 m2 m3 m4 m5 m6 m7 m8]`
+
 
 ### LICENSE
 
