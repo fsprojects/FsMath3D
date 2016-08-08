@@ -111,10 +111,10 @@ type quat = struct
     static member toAxisAngle (q: quat) =
         let nq = quat.normalize q
         let cos_a = nq.w
-        let sin_a = Math.Sqrt((1.0f - cos_a * cos_a) |> float) |> single
+        let sin_a = sqrt (1.0f - cos_a * cos_a)
 
-        let angle = (Math.Acos (cos_a |> float) |> single) * 2.0f
-        let sin_a = if( Math.Abs(sin_a |> single) |> single < (1.0f / 8192.0f) ) then 1.0f else sin_a
+        let angle = (acos cos_a) * 2.0f
+        let sin_a = if( abs sin_a < (1.0f / 8192.0f) ) then 1.0f else sin_a
         let axis = vec3(nq.x, nq.y, nq.z) / sin_a
 
         axis, angle
@@ -137,7 +137,7 @@ type quat = struct
         let q =
             if( t > 0.0f )
             then
-                let s = (Math.Sqrt(t |> float) |> single) * 2.0f
+                let s = (sqrt t) * 2.0f
 
                 let qx  = (mat9 - mat6) / s
                 let qy  = (mat2 - mat8) / s
@@ -148,7 +148,7 @@ type quat = struct
                 if( mat0 > mat5 && mat0 > mat10 )
                 then
                     // Column 0:
-                    let s = (Math.Sqrt((1.0f + mat0 - mat5 - mat10) |> float) |> single) * 2.0f
+                    let s = (sqrt (1.0f + mat0 - mat5 - mat10)) * 2.0f
                     let qx  = 0.25f * s
                     let qy  = (mat4 + mat1) / s
                     let qz  = (mat2 + mat8) / s
@@ -157,7 +157,7 @@ type quat = struct
                 elif( mat5 > mat10 )
                 then
                     // Column 1:
-                    let s = (Math.Sqrt((1.0f + mat5 - mat0 - mat10) |> float) |> single) * 2.0f
+                    let s = (sqrt (1.0f + mat5 - mat0 - mat10)) * 2.0f
                     let qx  = (mat4 + mat1) / s
                     let qy  = 0.25f * s
                     let qz  = (mat9 + mat6) / s
@@ -165,7 +165,7 @@ type quat = struct
                     quat(qx, qy, qz, qw)
                 else
                     // Column 2:
-                    let s = (Math.Sqrt((1.0f + mat10 - mat0 - mat5) |> float) |> single) * 2.0f
+                    let s = (sqrt (1.0f + mat10 - mat0 - mat5)) * 2.0f
                     let qx  = (mat2 + mat8) / s
                     let qy  = (mat9 + mat6) / s
                     let qz  = 0.25f * s
@@ -191,7 +191,7 @@ type quat = struct
         let q =
             if( t > 0.0f )
             then
-                let s = (Math.Sqrt(t |> float) |> single) * 2.0f
+                let s = (sqrt t) * 2.0f
 
                 let qx  = (mat9 - mat6) / s
                 let qy  = (mat2 - mat8) / s
@@ -202,7 +202,7 @@ type quat = struct
                 if( mat0 > mat5 && mat0 > mat10 )
                 then
                     // Column 0:
-                    let s = (Math.Sqrt((1.0f + mat0 - mat5 - mat10) |> float) |> single) * 2.0f
+                    let s = (sqrt (1.0f + mat0 - mat5 - mat10)) * 2.0f
                     let qx  = 0.25f * s
                     let qy  = (mat4 + mat1) / s
                     let qz  = (mat2 + mat8) / s
@@ -211,7 +211,7 @@ type quat = struct
                 elif( mat5 > mat10 )
                 then
                     // Column 1:
-                    let s = (Math.Sqrt((1.0f + mat5 - mat0 - mat10) |> float) |> single) * 2.0f
+                    let s = (sqrt (1.0f + mat5 - mat0 - mat10)) * 2.0f
                     let qx  = (mat4 + mat1) / s
                     let qy  = 0.25f * s
                     let qz  = (mat9 + mat6) / s
@@ -219,7 +219,7 @@ type quat = struct
                     quat(qx, qy, qz, qw)
                 else
                     // Column 2:
-                    let s = (Math.Sqrt((1.0f + mat10 - mat0 - mat5) |> float) |> single) * 2.0f
+                    let s = (sqrt (1.0f + mat10 - mat0 - mat5)) * 2.0f
                     let qx  = (mat2 + mat8) / s
                     let qy  = (mat9 + mat6) / s
                     let qz  = 0.25f * s
@@ -231,8 +231,8 @@ type quat = struct
     static member ofAxisAngle (axis: vec3, angle: single) =
         let n = if vec3.length axis > 0.0f then vec3.normalize axis else axis
         let half_angle = angle * 0.5f
-        let sin_a = (Math.Sin (half_angle |> float)) |> single
-        let cos_a = (Math.Cos (half_angle |> float)) |> single
+        let sin_a = sin half_angle
+        let cos_a = cos half_angle
 
         let n = n * sin_a
 
