@@ -9,3 +9,5 @@
 /FsMath3D.dll
 /Package.1.5.0.nuspec
 /Package.nuspec
+/src/bin/Debug
+/src/obj/Debug
