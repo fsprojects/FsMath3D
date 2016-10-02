@@ -11,3 +11,5 @@
 /Package.nuspec
 /src/bin/Debug
 /src/obj/Debug
+/src/bin/Release
+/src/obj/Release

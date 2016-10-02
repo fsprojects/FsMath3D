@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata minClientVersion="4.5">
+        <id>FsMath3D</id>
+        <version>1.5.1</version>
+        <authors>Wael El Oraiby</authors>
+        <owners>F# Projects</owners>
+        <licenseUrl>https://github.com/fsprojects/FsMath3D/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/fsprojects/FsMath3D</projectUrl>
+        <iconUrl>https://avatars0.githubusercontent.com/u/6001315?v=3&amp;s=200</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>F# 3D Math Library</description>
+        <summary>F# 3D Math Library</summary>
+        <releaseNotes>Portable Client Profile (4.5)</releaseNotes>
+        <copyright>F# Projects, Wael El Oraiby</copyright>
+        <tags>F#, 3D, Math, OpenGL, DirectX</tags>
+    </metadata>
+    <files>
+        <file src="..\src\bin\Release\FSharp.Core.dll" target="lib\portable-net45+sl4+wp7+win8\FSharp.Core.dll" />
+        <file src="..\src\bin\Release\FSharp.Core.xml" target="lib\portable-net45+sl4+wp7+win8\FSharp.Core.xml" />
+        <file src="..\src\bin\Release\FsMath3D.dll" target="lib\portable-net45+sl4+wp7+win8\FsMath3D.dll" />
+        <file src="..\src\bin\Release\FsMath3D.XML" target="lib\portable-net45+sl4+wp7+win8\FsMath3D.XML" />
+    </files>
+</package>
