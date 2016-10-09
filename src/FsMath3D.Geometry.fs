@@ -241,3 +241,19 @@ type tri3 = struct
     static member area (t: tri3) = t.Area
 
     end
+
+type box2 = struct
+    val min : vec2
+    val max : vec2
+
+    member x.center = (x.min + x.max) * 0.5f
+
+    end
+
+type box3 = struct
+    val min : vec3
+    val max : vec3
+
+    member x.center = (x.min + x.max) * 0.5f
+
+    end
