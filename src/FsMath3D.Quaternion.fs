@@ -238,3 +238,216 @@ type quat = struct
 
         quat(n.x, n.y, n.z, cos_a)
     end
+
+type dquat = struct
+    val x   : double
+    val y   : double
+    val z   : double
+    val w   : double
+    
+    new(x, y, z,  w)    = { x = x; y = y; z = z; w = w }
+
+    static member (~-) (q: dquat) = dquat(-q.x, -q.y, -q.z, -q.w)
+    static member (+) (q0: dquat, q1: dquat)  = dquat(q0.x + q1.x, q0.y + q1.y, q0.z + q1.z, q0.w + q1.w)
+    static member (+) (q0: dquat, q1: double) = dquat(q0.x + q1, q0.y + q1, q0.z + q1, q0.w + q1)
+    static member (-) (q0: dquat, q1: dquat)  = dquat(q0.x - q1.x, q0.y - q1.y, q0.z - q1.z, q0.w - q1.w)
+    static member (-) (q0: dquat, q1: double) = dquat(q0.x - q1, q0.y - q1, q0.z - q1, q0.w - q1)
+    static member (-) (q0: double, q1: dquat) = dquat(q0 - q1.x, q0 - q1.y, q0 - q1.z, q0 - q1.w)
+    static member (*) (q0: dquat, q1: double) = dquat(q0.x * q1, q0.y * q1, q0.z * q1, q0.w * q1)
+    static member (*) (q0: double, q1: dquat) = dquat(q0 * q1.x, q0 * q1.y, q0 * q1.z, q0 * q1.w)
+    static member (/) (q0: dquat, q1: double) = dquat(q0.x / q1, q0.y / q1, q0.z / q1, q0.w / q1)
+    static member (/) (q0: double, q1: dquat) = dquat(q0 / q1.x, q0 / q1.y, q0 / q1.z, q0 / q1.w)
+
+    static member dot (q0: dquat, q1: dquat) = q0.x * q1.x + q0.y * q1.y + q0.z * q1.z + q0.w * q1.w
+    static member length (q: dquat)  = sqrt (q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w)
+    static member conjugate (q: dquat) = dquat(-q.x, -q.y, -q.z, q.w)
+    static member normalize (q: dquat) = if dquat.length q > 0.0 then q / dquat.length(q) else q
+    static member inverse (q: dquat)   = dquat.normalize <| dquat.conjugate q
+
+    static member (*) (q0: dquat, q1: dquat) =
+        let x = q0.w * q1.x + q0.x * q1.w + q0.y * q1.z - q0.z * q1.y
+        let y = q0.w * q1.y + q0.y * q1.w + q0.z * q1.x - q0.x * q1.z
+        let z = q0.w * q1.z + q0.z * q1.w + q0.x * q1.y - q0.y * q1.x
+        let w = q0.w * q1.w - q0.x * q1.x - q0.y * q1.y - q0.z * q1.z
+        dquat.normalize <| dquat(x, y, z, w)
+
+    static member toMat3 (q: dquat) =
+        let xx = q.x * q.x
+        let xy = q.x * q.y
+        let xz = q.x * q.z
+        let xw = q.x * q.w
+        let yy = q.y * q.y
+        let yz = q.y * q.z
+        let yw = q.y * q.w
+        let zz = q.z * q.z
+        let zw = q.z * q.w
+
+        let m00 = 1.0 - 2.0 * (yy + zz)
+        let m01 = 2.0 * (xy - zw)
+        let m02 = 2.0 * (xz + yw)
+        let m10 = 2.0 * (xy + zw)
+        let m11 = 1.0 - 2.0 * (xx + zz)
+        let m12 = 2.0 * (yz - xw)
+        let m20 = 2.0 * (xz - yw)
+        let m21 = 2.0 * (yz + xw)
+        let m22 = 1.0 - 2.0 * (xx + yy)
+
+        dmat3 (m00, m10, m20, m01, m11, m21, m02, m12, m22)
+
+
+    static member toMat4 (q: dquat) =
+        let xx = q.x * q.x
+        let xy = q.x * q.y
+        let xz = q.x * q.z
+        let xw = q.x * q.w
+        let yy = q.y * q.y
+        let yz = q.y * q.z
+        let yw = q.y * q.w
+        let zz = q.z * q.z
+        let zw = q.z * q.w
+
+        let m00 = 1.0 - 2.0 * (yy + zz)
+        let m01 = 2.0 * (xy - zw)
+        let m02 = 2.0 * (xz + yw)
+        let m10 = 2.0 * (xy + zw)
+        let m11 = 1.0 - 2.0 * (xx + zz)
+        let m12 = 2.0 * (yz - xw)
+        let m20 = 2.0 * (xz - yw)
+        let m21 = 2.0 * (yz + xw)
+        let m22 = 1.0 - 2.0 * (xx + yy)
+
+        dmat4(m00, m10, m20, 0.0,
+              m01, m11, m21, 0.0,
+              m02, m12, m22, 0.0,
+              0.0, 0.0, 0.0, 1.0)
+    
+    static member toAxisAngle (q: dquat) =
+        let nq = dquat.normalize q
+        let cos_a = nq.w
+        let sin_a = sqrt (1.0 - cos_a * cos_a)
+
+        let angle = (acos cos_a) * 2.0
+        let sin_a = if( abs sin_a < (1.0 / 8192.0) ) then 1.0 else sin_a
+        let axis = dvec3(nq.x, nq.y, nq.z) / sin_a
+
+        axis, angle
+
+    static member ofMat3 (m: dmat3) =
+        let mat0  = m.c0.x
+        let mat1  = m.c1.x
+        let mat2  = m.c2.x
+
+        let mat4  = m.c0.y
+        let mat5  = m.c1.y
+        let mat6  = m.c2.y
+
+        let mat8  = m.c0.z
+        let mat9  = m.c1.z
+        let mat10 = m.c2.z
+
+        let t = 1.0 + mat0 + mat5 + mat10;
+
+        let q =
+            if( t > 0.0 )
+            then
+                let s = (sqrt t) * 2.0
+
+                let qx  = (mat9 - mat6) / s
+                let qy  = (mat2 - mat8) / s
+                let qz  = (mat4 - mat1) / s
+                let qw  = 0.25 * s
+                dquat(qx, qy, qz, qw)
+            else
+                if( mat0 > mat5 && mat0 > mat10 )
+                then
+                    // Column 0:
+                    let s = (sqrt (1.0 + mat0 - mat5 - mat10)) * 2.0
+                    let qx  = 0.25 * s
+                    let qy  = (mat4 + mat1) / s
+                    let qz  = (mat2 + mat8) / s
+                    let qw  = (mat9 - mat6) / s
+                    dquat(qx, qy, qz, qw)
+                elif( mat5 > mat10 )
+                then
+                    // Column 1:
+                    let s = (sqrt (1.0 + mat5 - mat0 - mat10)) * 2.0
+                    let qx  = (mat4 + mat1) / s
+                    let qy  = 0.25 * s
+                    let qz  = (mat9 + mat6) / s
+                    let qw  = (mat2 - mat8) / s
+                    dquat(qx, qy, qz, qw)
+                else
+                    // Column 2:
+                    let s = (sqrt (1.0 + mat10 - mat0 - mat5)) * 2.0
+                    let qx  = (mat2 + mat8) / s
+                    let qy  = (mat9 + mat6) / s
+                    let qz  = 0.25 * s
+                    let qw  = (mat4 - mat1) / s
+                    dquat(qx, qy, qz, qw)
+        q
+
+    static member ofMat4 (m: dmat4) =
+        let mat0  = m.c0.x
+        let mat1  = m.c1.x
+        let mat2  = m.c2.x
+
+        let mat4  = m.c0.y
+        let mat5  = m.c1.y
+        let mat6  = m.c2.y
+
+        let mat8  = m.c0.z
+        let mat9  = m.c1.z
+        let mat10 = m.c2.z
+
+        let t = 1.0 + mat0 + mat5 + mat10
+
+        let q =
+            if( t > 0.0 )
+            then
+                let s = (sqrt t) * 2.0
+
+                let qx  = (mat9 - mat6) / s
+                let qy  = (mat2 - mat8) / s
+                let qz  = (mat4 - mat1) / s
+                let qw  = 0.25 * s
+                dquat(qx, qy, qz, qw)
+            else
+                if( mat0 > mat5 && mat0 > mat10 )
+                then
+                    // Column 0:
+                    let s = (sqrt (1.0 + mat0 - mat5 - mat10)) * 2.0
+                    let qx  = 0.25 * s
+                    let qy  = (mat4 + mat1) / s
+                    let qz  = (mat2 + mat8) / s
+                    let qw  = (mat9 - mat6) / s
+                    dquat(qx, qy, qz, qw)
+                elif( mat5 > mat10 )
+                then
+                    // Column 1:
+                    let s = (sqrt (1.0 + mat5 - mat0 - mat10)) * 2.0
+                    let qx  = (mat4 + mat1) / s
+                    let qy  = 0.25 * s
+                    let qz  = (mat9 + mat6) / s
+                    let qw  = (mat2 - mat8) / s
+                    dquat(qx, qy, qz, qw)
+                else
+                    // Column 2:
+                    let s = (sqrt (1.0 + mat10 - mat0 - mat5)) * 2.0
+                    let qx  = (mat2 + mat8) / s
+                    let qy  = (mat9 + mat6) / s
+                    let qz  = 0.25 * s
+                    let qw  = (mat4 - mat1) / s
+                    dquat(qx, qy, qz, qw)
+
+        q
+
+    static member ofAxisAngle (axis: dvec3, angle: double) =
+        let n = if dvec3.length axis > 0.0 then dvec3.normalize axis else axis
+        let half_angle = angle * 0.5
+        let sin_a = sin half_angle
+        let cos_a = cos half_angle
+
+        let n = n * sin_a
+
+        dquat(n.x, n.y, n.z, cos_a)
+    end
