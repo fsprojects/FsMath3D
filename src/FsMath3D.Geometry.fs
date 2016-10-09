@@ -246,6 +246,7 @@ type box2 = struct
     val min : vec2
     val max : vec2
 
+    new(min_, max_) = { min = min_; max = max_ }
     member x.center = (x.min + x.max) * 0.5f
 
     end
@@ -254,6 +255,7 @@ type box3 = struct
     val min : vec3
     val max : vec3
 
+    new(min_, max_) = { min = min_; max = max_ }
     member x.center = (x.min + x.max) * 0.5f
 
     end

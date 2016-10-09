@@ -47,7 +47,7 @@
     <Compile Include="FsMath3D.Transform.fs" />
     <Compile Include="FsMath3D.Geometry.fs" />
     <Compile Include="FsMath3D.Queries.fs" />
-    <None Include="FsMath3D.nuspec" />
+    <None Include="../nuget/FsMath3D.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>FsMath3D</id>
-        <version>1.5.3</version>
+        <version>1.5.4</version>
         <authors>Wael El Oraiby</authors>
         <owners>F# Projects</owners>
         <licenseUrl>https://github.com/fsprojects/FsMath3D/blob/master/LICENSE</licenseUrl>
@@ -11,8 +11,10 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>F# 3D Math Library</description>
         <summary>F# 3D Math Library</summary>
-        <releaseNotes>v1.5.3 - fix dependency
-v1.5.2 - Portable Client Profile (4.5)</releaseNotes>
+        <releaseNotes>
+          v1.5.4 - added box2, box3 to Geometry
+          v1.5.3 - fix dependency
+          v1.5.2 - Portable Client Profile (4.5)</releaseNotes>
         <copyright>F# Projects, Wael El Oraiby</copyright>
         <tags>F#, 3D, Math, OpenGL, DirectX</tags>
         <dependencies>
