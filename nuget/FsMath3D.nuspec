@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>FsMath3D</id>
-        <version>1.6.0-alpha-0</version>
+        <version>1.6.0-alpha-1</version>
         <authors>Wael El Oraiby</authors>
         <owners>F# Projects</owners>
         <licenseUrl>https://github.com/fsprojects/FsMath3D/blob/master/LICENSE</licenseUrl>
@@ -24,6 +24,7 @@ v1.5.2 - Portable Client Profile (4.5)</releaseNotes>
         </dependencies>
     </metadata>
     <files>
+        <file src="lib\MonoAndroid\FsMath3D.dll" target="lib\MonoAndroid\FsMath3D.dll" />
         <file src="lib\portable-net45+sl4+wp7+win8\FsMath3D.dll" target="lib\portable-net45+sl4+wp7+win8\FsMath3D.dll" />
     </files>
 </package>
