@@ -13,7 +13,7 @@ The Matrices are written in Column major order (GLSL default). This means that t
 | m2 m5 m8 |
 ```
 
-has the following layout in memory: `[m0 m1 m2 m3 m4 m5 m6 m7 m8]`
+has the following layout in memory: `[| m0 m1 m2 m3 m4 m5 m6 m7 m8 |]`
 
 ### Modules
 The FsMath3D is composed of several modules:
