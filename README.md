@@ -43,4 +43,4 @@ The FsMath3D is composed of several modules:
 
 ### LICENSE
 
-New BSD license (compatible for commercial and opensource applications)
+New BSD license (compatible with commercial and opensource applications)
