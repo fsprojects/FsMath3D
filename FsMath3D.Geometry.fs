@@ -103,10 +103,8 @@ type rect = struct
     member x.Max    = vec2(x.position.x + x.size.width, x.position.y + x.size.height)
 
     member x.IsOnOrInside (p: vec2) =
-        if p.x >= x.position.x && p.x <= x.position.x + x.size.width
-           && p.y >= x.position.y && p.y <= x.position.y + x.size.height
-        then true
-        else false
+        p.x >= x.position.x && p.x <= x.position.x + x.size.width
+        && p.y >= x.position.y && p.y <= x.position.y + x.size.height
 
     static member intersect (a: rect) (b: rect) =
         let xMin = max a.Min.x b.Min.x
@@ -149,10 +147,8 @@ type irect = struct
     member x.Max    = ivec2(x.position.x + x.size.width, x.position.y + x.size.height)
 
     member x.IsOnOrInside (p: ivec2) =
-        if p.x >= x.position.x && p.x <= x.position.x + x.size.width
-           && p.y >= x.position.y && p.y <= x.position.y + x.size.height
-        then true
-        else false
+        p.x >= x.position.x && p.x <= x.position.x + x.size.width
+        && p.y >= x.position.y && p.y <= x.position.y + x.size.height
 
     static member intersect (a: rect) (b: rect) =
         let xMin = max a.Min.x b.Min.x
