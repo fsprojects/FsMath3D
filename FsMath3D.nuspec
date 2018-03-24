@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>FsMath3D</id>
-        <version>1.7.0-alpha-1</version>
+        <version>1.7.0-alpha-2</version>
         <authors>Wael El Oraiby</authors>
         <owners>F# Projects</owners>
         <licenseUrl>https://github.com/fsprojects/FsMath3D/blob/master/LICENSE</licenseUrl>
@@ -11,7 +11,7 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>F# 3D Math Library</description>
         <summary>F# 3D Math Library</summary>
-        <releaseNotes>v1.7.0 - .netstandard 1.6 support
+        <releaseNotes>v1.7.0 - .netstandard 2.0 support
 v1.6.0 - add icolor3, icolor4, color3, dvec2, dvec3, dvec4, dmat2, dmat3, dmat4, dquat
 v1.5.4 - added box2, box3 to Geometry
 v1.5.3 - fix dependency
@@ -25,7 +25,6 @@ v1.5.2 - Portable Client Profile (4.5)</releaseNotes>
         </dependencies>
     </metadata>
     <files>
-        <file src="lib/FsMath3D.dll" target="lib/netstandard1.6/FsMath3D.dll" />
-        <file src="lib/FsMath3D.dll" target="lib/net451/FsMath3D.dll" />
+        <file src="bin/Release/netstandard2.0/FsMath3D.dll" target="lib/netstandard2.0/FsMath3D.dll" />
     </files>
 </package>
