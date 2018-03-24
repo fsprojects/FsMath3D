@@ -5,10 +5,10 @@
         <version>1.7.0-alpha-2</version>
         <authors>Wael El Oraiby</authors>
         <owners>F# Projects</owners>
-        <licenseUrl>https://github.com/fsprojects/FsMath3D/blob/master/LICENSE</licenseUrl>
+        <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
         <projectUrl>https://github.com/fsprojects/FsMath3D</projectUrl>
         <iconUrl>https://avatars0.githubusercontent.com/u/6001315?v=3&amp;s=200</iconUrl>
-        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>F# 3D Math Library</description>
         <summary>F# 3D Math Library</summary>
         <releaseNotes>v1.7.0 - .netstandard 2.0 support
