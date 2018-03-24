@@ -19,7 +19,7 @@ v1.5.2 - Portable Client Profile (4.5)</releaseNotes>
         <copyright>F# Projects, Wael El Oraiby</copyright>
         <tags>F#, 3D, Math, OpenGL, DirectX</tags>
         <dependencies>
-            <group targetFramework="netstandard1.6">
+            <group targetFramework="netstandard2.0">
                 <dependency id="FSharp.Core" version="4.2.1" />
             </group>
         </dependencies>
