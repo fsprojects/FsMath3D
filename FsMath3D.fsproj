@@ -4,15 +4,25 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>FsMath3D</PackageId>
+    <Version>1.7.0</Version>
+    <Authors>Wael El Oraiby</Authors>
+    <Owners>Wael El Oraiby</Owners>
+    <Title>F# 3D Math Library</Title>
+    <Description>F# 3D Math Library</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/fsprojects/FsMath3D</PackageProjectUrl>
+    <Copyright>2015-2018 (c) Wael El Oraiby</Copyright>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="FsMath3D.Vector.fs" />
     <Compile Include="FsMath3D.Matrix.fs" />
     <Compile Include="FsMath3D.Quaternion.fs" />
     <Compile Include="FsMath3D.Transform.fs" />
     <Compile Include="FsMath3D.Geometry.fs" />
     <Compile Include="FsMath3D.Queries.fs" />
-    <None Include="../nuget/FsMath3D.nuspec" />
   </ItemGroup>
 
 </Project>
